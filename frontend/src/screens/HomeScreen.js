@@ -11,7 +11,7 @@ const HomeScreen = () => {
                 {products.map((product, i) => (
                     <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                         {/* access prop from within Product type */}
-                        <Product key={product._id} product={product} />
+                        <Product product={product} />
                     </Col>
                 ))}
             </Row>
