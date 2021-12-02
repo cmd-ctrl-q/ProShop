@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
-import products from '../products'
+import axios from 'axios'
 
 const HomeScreen = () => {
+
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+
+        // since axios returns a promise, you have to call await
+        const fetchProducts = async () => {
+            const { data } = await axios.get('/api/products')
+            setProducts(data)
+        }
+
+        fetchProducts()
+    }, []) 
+
     return (
         <div>
             <h1>Latest Products</h1>
             <Row>
                 {products.map((product, i) => (
                     <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                        {/* access prop from within Product type */}
                         <Product product={product} />
                     </Col>
                 ))}
