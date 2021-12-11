@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 // useDispatch dispatches actions
 // useSelector selects parts of the state, (eg productList)
 import { useDispatch, useSelector } from 'react-redux'
