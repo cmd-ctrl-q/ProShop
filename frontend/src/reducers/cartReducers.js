@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from '../constants/cartConstants'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants'
 
 // state is the initial state
 export const cartReducer = (state = { cartItems: [] }, action) => {
@@ -25,6 +25,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
                     // add the current state items into cartItems and the new item because it didn't exist before
                     cartItems: [...state.cartItems, item]
                 }
+            }
+        case CART_REMOVE_ITEM:
+            return {
+                ...state, 
+                // remove the item from list
+                cartItems: state.cartItems.filter((x) => x.product !== action.payload)
             }
         default:
             return state
