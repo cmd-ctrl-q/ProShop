@@ -9,7 +9,7 @@ import { listProductDetails } from '../actions/productActions'
 
 // ProductScreen displays a single product
 const ProductScreen = () => {
-    const [qty, setQty] = useState(0)
+    const [qty, setQty] = useState(1)
 
     let { id } = useParams('id')
     const navigate = useNavigate()

@@ -12,12 +12,14 @@ const reducer = combineReducers({
 
 // if cartItems is in localstorage then retrieve it, else set to []
 const cartItemsFromStorage = localStorage.getItem('cartItems') 
-    ? JSON.parse(localStorage.getItem('cartitems')) 
+    ? JSON.parse(localStorage.getItem('cartItems')) 
     : []
 
 // initial state that will get loaded first
 const initialState = {
-    cart: {cartItems: cartItemsFromStorage},
+    cart: {
+        cartItems: cartItemsFromStorage
+    },
 }
 
 const middleware = [thunk]
