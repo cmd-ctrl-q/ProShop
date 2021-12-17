@@ -31,6 +31,18 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)
 }
 
+// add middleware before saving
+userSchema.pre('save', async function (next) {
+    // do not salt password if it hasn't been modified
+    if (!this.isModified('password')) {
+        next()
+    }
+
+    // use await because genSalt returns a promise 
+    const salt = await bcrypt.genSalt(10)
+    this.password = await bcrypt.hash(this.password, salt)
+})
+
 const User = mongoose.model('User', userSchema)
 
 export default User
