@@ -3,13 +3,15 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { productListReducer, productDetailsReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { userLoginReducer } from './reducers/userReducers'
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
+
 const reducer = combineReducers({
     // stateName: reducer
     productList: productListReducer,
     productDetails: productDetailsReducer,
     cart: cartReducer,
-    userLogin: userLoginReducer
+    userLogin: userLoginReducer,
+    userRegister: userRegisterReducer
 })
 
 // if cartItems is in localstorage then retrieve it, else set to []
