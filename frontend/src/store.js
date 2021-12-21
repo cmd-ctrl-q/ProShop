@@ -30,13 +30,19 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo')) 
     : null
 
+const shippingAddressFromStorage = localStorage.getItem('shippingAddress') 
+    ? JSON.parse(localStorage.getItem('shippingAddress')) 
+    : {}
+
+
 // initial state that will get loaded first
 const initialState = {
     cart: {
-        cartItems: cartItemsFromStorage
+        cartItems: cartItemsFromStorage,
+        shippingAddress: shippingAddressFromStorage,
     },
     userLogin: {
-        userInfo: userInfoFromStorage
+        userInfo: userInfoFromStorage,
     }
 }
 
