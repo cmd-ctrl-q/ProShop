@@ -20,6 +20,7 @@ const LoginScreen = () => {
 
     const search = useLocation().search
     let redirect = new URLSearchParams(search).get('redirect')
+    console.log('redirect>>> ', redirect)
     if (!redirect) {
         redirect = '/'
     }
@@ -27,7 +28,7 @@ const LoginScreen = () => {
     useEffect(() => {
         if (userInfo) {
             // redirect user 
-            navigate(redirect)
+            navigate(`/${redirect}`)
         }
     }, [userInfo, navigate, redirect])
 
