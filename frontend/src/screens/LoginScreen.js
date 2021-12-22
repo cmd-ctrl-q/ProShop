@@ -20,7 +20,6 @@ const LoginScreen = () => {
 
     const search = useLocation().search
     let redirect = new URLSearchParams(search).get('redirect')
-    console.log('redirect>>> ', redirect)
     if (!redirect) {
         redirect = '/'
     }
