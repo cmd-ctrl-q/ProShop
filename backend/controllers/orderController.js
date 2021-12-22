@@ -22,11 +22,11 @@ const addOrderItems = asyncHandler(async (req, res) => {
         // create new order in db 
         const order = new Order({
             orderItems, 
-            user: req.user_id,
-            shippingAddress, 
-            paymentMethod, 
-            itemsPrice, 
-            taxPrice, 
+            user: req.user._id,
+            shippingAddress,
+            paymentMethod,
+            itemsPrice,
+            taxPrice,
             shippingPrice,
             totalPrice,
         })
