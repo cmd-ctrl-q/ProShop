@@ -40,7 +40,7 @@ const ProfileScreen = () => {
     useEffect(() => {
         if (!userInfo) {
             // redirect user 
-            navigate({to: '/login'})
+            navigate('/login')
         } else {
             if (!user || !user.name || success) {
                 // update user profile state
