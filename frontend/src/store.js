@@ -8,6 +8,7 @@ import {
     userRegisterReducer, 
     userDetailsReducer, 
     userUpdateProfileReducer,
+    userListReducer,
 } from './reducers/userReducers'
 import { 
     orderCreateReducer, 
@@ -24,11 +25,12 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
+    userList: userListReducer,
     userUpdateProfile: userUpdateProfileReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
-    orderListMy: orderListMyReducer
+    orderListMy: orderListMyReducer,
 })
 
 // if cartItems is in localstorage then retrieve it, else set to []
