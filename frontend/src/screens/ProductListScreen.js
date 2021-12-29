@@ -5,7 +5,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listProducts } from '../actions/productActions'
+import { listProducts, deleteProduct } from '../actions/productActions'
 
 const ProductListScreen = () => {
     const dispatch = useDispatch()
@@ -13,6 +13,13 @@ const ProductListScreen = () => {
 
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
+
+    const productDelete = useSelector(state => state.productDelete)
+    const { 
+        loading: loadingDelete, 
+        error: errorDelete, 
+        success: successDelete 
+    } = productDelete
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -24,11 +31,13 @@ const ProductListScreen = () => {
             // if not admin, redirect to login
             navigate('/login')
         }
-    }, [dispatch, navigate, userInfo])
+    }, [dispatch, navigate, userInfo, successDelete])
+    // upon successDelete state change, useEffect will rerun and 
+    // the deleted product will be gone.
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure?')) {
-            // Delete Products
+            dispatch(deleteProduct(id))
         }
     }
 
@@ -50,6 +59,8 @@ const ProductListScreen = () => {
                 </Col>
             </Row>
 
+            {loadingDelete && <Loader />}
+            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
             {loading ? <Loader /> : 
                 error ? <Message variant='danger'>{error}</Message> 
                 : (
