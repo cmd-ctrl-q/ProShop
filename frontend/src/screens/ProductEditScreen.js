@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { listProductDetails } from '../actions/productActions'
+import { listProductDetails, updateProduct } from '../actions/productActions'
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 const ProductEditScreen = () => {
     let productId = useParams('id').id
@@ -93,7 +94,7 @@ const ProductEditScreen = () => {
                             </Form.Group>
 
                             {/* PRICE */}
-                            <Form.Group controlId='email' className='mb-3'>
+                            <Form.Group controlId='price' className='mb-3'>
                                 <Form.Label>Price</Form.Label>
                                 <Form.Control 
                                     type='number' 
@@ -132,7 +133,7 @@ const ProductEditScreen = () => {
                                     type='number' 
                                     placeholder='Enter count in stock' 
                                     value={countInStock}
-                                    onChange={(e) => setPrice(e.target.value)}
+                                    onChange={(e) => setCountInStock(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
 
@@ -143,7 +144,7 @@ const ProductEditScreen = () => {
                                     type='text' 
                                     placeholder='Enter category' 
                                     value={category}
-                                    onChange={(e) => setBrand(e.target.value)}
+                                    onChange={(e) => setCategory(e.target.value)}
                                 ></Form.Control>
                             </Form.Group>
 
