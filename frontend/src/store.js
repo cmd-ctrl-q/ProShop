@@ -23,6 +23,7 @@ import {
     orderDetailsReducer,
     orderListMyReducer,
     orderPayReducer,
+    orderListReducer,
 } from './reducers/orderReducers'
 
 const reducer = combineReducers({
@@ -44,6 +45,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderListMy: orderListMyReducer,
+    orderList: orderListReducer,
 })
 
 // if cartItems is in localstorage then retrieve it, else set to []
