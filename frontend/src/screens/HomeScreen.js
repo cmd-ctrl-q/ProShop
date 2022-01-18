@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 // useDispatch dispatches actions
 // useSelector selects parts of the state, (eg productList)
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
@@ -9,6 +10,7 @@ import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
 
 const HomeScreen = () => {
+    const keyword = useParams('keyword').keyword
 
     // create hook
     const dispatch = useDispatch()
@@ -19,14 +21,8 @@ const HomeScreen = () => {
 
     useEffect(() => {
         // make request to backend to get products using the dispatcher
-        dispatch(listProducts())
-    }, [dispatch])  // pass dispatch as a dependency
-
-    // if (loading) {
-    //     return <p>Loading...</p>
-    // } else if (error) {
-    //     return <p>{error.message}</p>
-    // }
+        dispatch(listProducts(keyword))
+    }, [dispatch, keyword])  // pass dispatch as a dependency
 
     return (
         <>

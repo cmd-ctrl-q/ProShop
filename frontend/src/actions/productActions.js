@@ -22,14 +22,14 @@ import {
 import axios from 'axios'
 
 // action creator. async dispatch actions
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ 
             type: PRODUCT_LIST_REQUEST
         })
 
         // destructure data 
-        const { data } = await axios.get('/api/products')
+        const { data } = await axios.get(`/api/products?keyword=${keyword}`)
 
         // dispatch the product list success
         dispatch({
