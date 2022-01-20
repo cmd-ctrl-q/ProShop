@@ -8,21 +8,23 @@ import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
+import Paginate from '../components/Paginate'
 
 const HomeScreen = () => {
     const keyword = useParams('keyword').keyword
+    const pageNumber = useParams('pageNumber').pageNumber || 1
 
     // create hook
     const dispatch = useDispatch()
 
     // get the productList from the state
     const productList = useSelector(state => state.productList)
-    const { loading, error, products} = productList
+    const { loading, error, products, page, pages } = productList
 
     useEffect(() => {
         // make request to backend to get products using the dispatcher
-        dispatch(listProducts(keyword))
-    }, [dispatch, keyword])  // pass dispatch as a dependency
+        dispatch(listProducts(keyword, pageNumber))
+    }, [dispatch, keyword, pageNumber])  // pass dispatch as a dependency
 
     return (
         <>
@@ -32,13 +34,20 @@ const HomeScreen = () => {
             ) : error ? (
                 <Message variant='danger'>{error}</Message>
             ) : (
-                <Row>
-                    {products.map((product) => (
-                        <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                            <Product product={product} />
-                        </Col>
-                    ))}
-                </Row>
+                <>
+                    <Row>
+                        {products.map((product) => (
+                            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                <Product product={product} />
+                            </Col>
+                        ))}
+                    </Row>
+                    <Paginate 
+                        pages={pages}
+                        page={page} 
+                        keyword={keyword ? keyword : ''}
+                    />
+                </>
             )}
         </>
     )
