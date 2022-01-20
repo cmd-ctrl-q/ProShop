@@ -5,6 +5,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
@@ -67,6 +68,7 @@ const ProductScreen = () => {
             ? <Loader /> : error ? <Message varaint='danger'>{error}</Message> 
             : (
             <>
+                <Meta title={product.name} />
                 <Row>
                     <Col md={6} className='product-page-section'>
                         {/* fluid prevents image from going outside of its container */}

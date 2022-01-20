@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-// useDispatch dispatches actions
-// useSelector selects parts of the state, (eg productList)
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
@@ -29,7 +28,14 @@ const HomeScreen = () => {
 
     return (
         <>
-        {!keyword && <ProductCarousel />}
+        <Meta />
+        {!keyword ? (
+            <ProductCarousel /> 
+            ) : ( 
+            <Link to='/' className='btn btn-light'>
+                Go Back
+            </Link>
+            )}
             <h1>Latest Products</h1>
             {loading ? (
                 <Loader />
